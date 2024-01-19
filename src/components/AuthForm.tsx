@@ -1,6 +1,9 @@
-import { Form, Link, useSearchParams } from 'react-router-dom';
+import { Form, Link, useSearchParams, useActionData } from 'react-router-dom';
+import { httpReqError } from '../types.ts';
 
 function AuthForm() {
+  const data = useActionData() as httpReqError;
+
   const [searchParams] = useSearchParams();
   const isLogin = searchParams.get('mode') === 'login';
 
@@ -8,6 +11,14 @@ function AuthForm() {
     <>
       <Form method="POST" className="form">
         <h1>{isLogin ? 'Log in' : 'Create a new user'}</h1>
+        {data && data.message && <p className="error">{data.message}</p>}
+        {data && data.errors && (
+          <ul>
+            {Object.values(data.errors).map((err: string) => (
+              <li key={err}>{err}</li>
+            ))}
+          </ul>
+        )}
         <p>
           <label htmlFor="email">Email</label>
           <input id="email" type="email" name="email" required />

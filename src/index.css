@@ -247,4 +247,5 @@ ul {
 
 .error {
   color: var(--color-primary-900);
+  font-size: larger;
 }

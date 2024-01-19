@@ -6,18 +6,14 @@ import {
   json,
   redirect,
 } from 'react-router-dom';
-import {
-  EventFormProps,
-  deleteEventInputError,
-  formEventActionFn,
-} from '../types.ts';
+import { EventFormProps, httpReqError, formEventActionFn } from '../types.ts';
 
 import PageContent from './PageContent.tsx';
 
 export default function EventForm({ method, event }: EventFormProps) {
   const navigate = useNavigate();
   const navigation = useNavigation();
-  const response = useActionData() as deleteEventInputError;
+  const response = useActionData() as httpReqError;
 
   const isSubmitting = navigation.state === 'submitting';
 

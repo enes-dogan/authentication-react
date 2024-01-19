@@ -31,7 +31,7 @@ export interface EventDetailLoaderParams {
 export type formEventActionFn = ActionFunction<{
   request: {
     method: string;
-    formData: () => Promise<EventTypes>;
+    formData: () => Promise<FormDataEntryValue>;
   };
   params: Params<string>;
 }>;
@@ -45,20 +45,20 @@ export interface DeleteEventActionParams {
 
 export type newsletterActionFn = ActionFunction<{
   request: {
-    formData: () => Promise<EventTypes>;
+    formData: () => Promise<FormDataEntryValue>;
   };
 }>;
 
 export interface AuthActionParams {
   request: {
     method: string;
-    formData: () => Promise<UserCredentials>;
+    formData: () => Promise<FormDataEntryValue>;
   };
 }
 
 export type authActionFn = ActionFunction<AuthActionParams>;
 
-export interface deleteEventInputError {
+export interface httpReqError {
   message: string;
   errors: EventTypes;
 }
