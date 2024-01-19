@@ -17,12 +17,16 @@ import { loader as eventDetailLoader } from './pages/EventDetail.tsx';
 import { action as formEventAction } from './components/EventForm.tsx';
 import { action as newsletterAction } from './pages/Newsletter.tsx';
 import { action as authAction } from './pages/Authentication.tsx';
+import { action as logoutaction } from './pages/Logout.tsx';
+import { tokenLoader, checkAuthLoader } from './util/auth.ts';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
     errorElement: <ErrorPage />,
+    id: 'root',
+    loader: tokenLoader,
     children: [
       { index: true, element: <HomePage /> },
       {
@@ -48,10 +52,16 @@ const router = createBrowserRouter([
                 path: 'edit',
                 element: <EditEventPage />,
                 action: formEventAction,
+                loader: checkAuthLoader,
               },
             ],
           },
-          { path: 'new', element: <NewEventPage />, action: formEventAction },
+          {
+            path: 'new',
+            element: <NewEventPage />,
+            action: formEventAction,
+            loader: checkAuthLoader,
+          },
         ],
       },
       {
@@ -63,6 +73,10 @@ const router = createBrowserRouter([
         path: 'newsletter',
         element: <NewsletterPage />,
         action: newsletterAction,
+      },
+      {
+        path: 'logout',
+        action: logoutaction,
       },
     ],
   },

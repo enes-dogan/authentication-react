@@ -1,8 +1,9 @@
-import { Link, useSubmit } from 'react-router-dom';
+import { Link, useRouteLoaderData, useSubmit } from 'react-router-dom';
 import { EventTypes } from '../types.ts';
 
 export default function EventItem({ event }: { event: EventTypes }) {
   const submit = useSubmit();
+  const token = useRouteLoaderData('root') as string | null;
 
   function startDeleteHandler() {
     const proceed = window.confirm('Are you sure?');
@@ -18,10 +19,12 @@ export default function EventItem({ event }: { event: EventTypes }) {
       <h1>{event.title}</h1>
       <time>{event.date}</time>
       <p>{event.description}</p>
-      <menu className="event-item-actions">
-        <Link to="edit">Edit</Link>
-        <button onClick={startDeleteHandler}>Delete</button>
-      </menu>
+      {token && (
+        <menu className="event-item-actions">
+          <Link to="edit">Edit</Link>
+          <button onClick={startDeleteHandler}>Delete</button>
+        </menu>
+      )}
     </article>
   );
 }
