@@ -9,6 +9,11 @@ export interface EventTypes {
   id: string;
 }
 
+export interface UserCredentials {
+  email: string;
+  password: string;
+}
+
 export interface EventFormProps {
   method: 'POST' | 'PATCH';
   event?: EventTypes;
@@ -43,6 +48,15 @@ export type newsletterActionFn = ActionFunction<{
     formData: () => Promise<EventTypes>;
   };
 }>;
+
+export interface AuthActionParams {
+  request: {
+    method: string;
+    formData: () => Promise<UserCredentials>;
+  };
+}
+
+export type authActionFn = ActionFunction<AuthActionParams>;
 
 export interface deleteEventInputError {
   message: string;

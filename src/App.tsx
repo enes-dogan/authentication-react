@@ -16,6 +16,7 @@ import { action as deleteEventAction } from './pages/EventDetail.tsx';
 import { loader as eventDetailLoader } from './pages/EventDetail.tsx';
 import { action as formEventAction } from './components/EventForm.tsx';
 import { action as newsletterAction } from './pages/Newsletter.tsx';
+import { action as authAction } from './pages/Authentication.tsx';
 
 const router = createBrowserRouter([
   {
@@ -56,6 +57,7 @@ const router = createBrowserRouter([
       {
         path: 'auth',
         element: <AuthenticationPage />,
+        action: authAction,
       },
       {
         path: 'newsletter',

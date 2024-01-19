@@ -97,7 +97,8 @@ ul {
   justify-content: flex-end;
 }
 
-.actions button {
+.actions button,
+.actions a {
   font: inherit;
   cursor: pointer;
   padding: 0.5rem 1.5rem;
@@ -117,6 +118,16 @@ ul {
 }
 
 .actions button[type='button']:hover {
+  background-color: var(--color-gray-800);
+}
+
+.actions a {
+  text-decoration: none;
+  background-color: transparent;
+  color: var(--color-gray-300);
+}
+
+.actions a:hover {
   background-color: var(--color-gray-800);
 }
 
