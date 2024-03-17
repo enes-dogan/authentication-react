@@ -22,7 +22,7 @@ async function get(email) {
     throw new NotFoundError('Could not find any users.');
   }
 
-  const user = storedData.users.find((ev) => ev.email === email);
+  const user = storedData.users.find(ev => ev.email === email);
   if (!user) {
     throw new NotFoundError('Could not find user for email ' + email);
   }
